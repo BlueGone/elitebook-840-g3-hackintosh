@@ -1,23 +1,22 @@
 DL_DIR		=	_dl
 SRC_DIR		=	src
-DIST_DIR	=	EFI
+DIST_DIR	=	dist
 
 OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/0.5.9/OpenCore-0.5.9-RELEASE.zip
 OPEN_CORE_ZIP	=	$(DL_DIR)/$(notdir $(OPEN_CORE_URL))
 OPEN_CORE_DIR	=	$(basename $(OPEN_CORE_ZIP))
 OPEN_CORE_SRCS	=	\
-	$(OPEN_CORE_DIR)/EFI/BOOT/BOOTx64.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Bootstrap/Bootstrap.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenRuntime.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Tools/OpenShell.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/OpenCore.efi
-OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI,$(DIST_DIR),$(OPEN_CORE_SRCS))
+OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
 HFS_PLUS_EFI_URL	=	https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi?raw=true
 HFS_PLUS_EFI_SRC	=	$(DL_DIR)/HfsPlus.efi
-HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/OC/Drivers/HfsPlus.efi
+HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/Drivers/HfsPlus.efi
 
-DIST_KEXT_DIR		=	$(DIST_DIR)/OC/Kexts
+DIST_KEXT_DIR		=	$(DIST_DIR)/Kexts
 
 KEXT_AIRPORTBRCMFIXUP_URL	=	https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.7/AirportBrcmFixup-2.0.7-RELEASE.zip
 KEXT_AIRPORTBRCMFIXUP_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_AIRPORTBRCMFIXUP_URL))
@@ -83,7 +82,7 @@ KEXT_WHATEVERGREEN_SRC	=	$(KEXT_WHATEVERGREEN_DIR)/WhateverGreen.kext
 KEXT_WHATEVERGREEN_DIST	=	$(DIST_KEXT_DIR)/WhateverGreen.kext
 
 KEXT_CPUFRIENDDATAPROVIDER_SRC	=	$(SRC_DIR)/Kexts/CPUFriendDataProvider.kext
-KEXT_CPUFRIENDDATAPROVIDER_DIST	=	$(DIST_DIR)/OC/Kexts/CPUFriendDataProvider.kext
+KEXT_CPUFRIENDDATAPROVIDER_DIST	=	$(DIST_DIR)/Kexts/CPUFriendDataProvider.kext
 
 KEXTS_DIST	=	\
 	$(KEXT_AIRPORTBRCMFIXUP_DIST) \
@@ -102,10 +101,10 @@ ACPI_SRCS	=	\
 	$(SRC_DIR)/ACPI/SSDT-EC-USBX.aml \
 	$(SRC_DIR)/ACPI/SSDT-PLUG.aml \
 	$(SRC_DIR)/ACPI/SSDT-PNLF.aml
-ACPI_DIST	=	$(ACPI_SRCS:$(SRC_DIR)/ACPI/%=$(DIST_DIR)/OC/ACPI/%)	
+ACPI_DIST	=	$(ACPI_SRCS:$(SRC_DIR)/%=$(DIST_DIR)/%)	
 
 CONFIG_PLIST_SRC	=	$(SRC_DIR)/config.plist
-CONFIG_PLIST_DIST	=	$(DIST_DIR)/OC/config.plist
+CONFIG_PLIST_DIST	=	$(DIST_DIR)/config.plist
 
 DIST		=	\
 	$(OPEN_CORE_DIST) \
@@ -125,7 +124,7 @@ $(OPEN_CORE_DIR):	$(OPEN_CORE_ZIP)
 	mkdir -p $@
 	unzip -d $@ -o $<
 $(OPEN_CORE_SRCS):	$(OPEN_CORE_DIR)
-$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI,$$@)
+$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI/OC,$$@)
 	mkdir -p $(dir $@)
 	cp $< $@
 
@@ -254,6 +253,6 @@ $(CONFIG_PLIST_DIST):	$(CONFIG_PLIST_SRC)
 	mkdir -p $(dir $@)
 	cp -r $< $@
 
-$(ACPI_DIST):	$$(subst $(DIST_DIR)/OC/ACPI,$(SRC_DIR)/ACPI,$$@)
+$(ACPI_DIST):	$$(subst $(DIST_DIR),$(SRC_DIR),$$@)
 	mkdir -p $(dir $(ACPI_DIST))
 	cp -r $< $@
