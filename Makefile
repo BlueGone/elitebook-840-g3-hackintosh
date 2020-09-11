@@ -12,7 +12,11 @@ OPEN_CORE_SRCS	=	\
 	$(OPEN_CORE_DIR)/EFI/OC/OpenCore.efi
 OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
-DIST		=	$(OPEN_CORE_DIST)
+HFS_PLUS_EFI_URL	=	https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi?raw=true
+HFS_PLUS_EFI_SRC	=	$(DL_DIR)/HfsPlus.efi
+HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/OC/Drivers/HfsPlus.efi
+
+DIST		=	$(OPEN_CORE_DIST) $(HFS_PLUS_EFI_DIST)
 
 .SECONDEXPANSION:
 
@@ -26,5 +30,12 @@ $(OPEN_CORE_DIR):	$(OPEN_CORE_ZIP)
 	unzip -d $@ -o $<
 $(OPEN_CORE_SRCS):	$(OPEN_CORE_DIR)
 $(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI,$$@)
+	mkdir -p $(dir $@)
+	cp $< $@
+
+$(HFS_PLUS_EFI_SRC):
+	mkdir -p $(dir $@)
+	curl -Lo $@ $(HFS_PLUS_EFI_URL)
+$(HFS_PLUS_EFI_DIST):	$(HFS_PLUS_EFI_SRC)
 	mkdir -p $(dir $@)
 	cp $< $@
