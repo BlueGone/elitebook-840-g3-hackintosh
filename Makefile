@@ -2,7 +2,7 @@ DL_DIR		=	_dl
 SRC_DIR		=	src
 DIST_DIR	=	dist
 
-OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/0.5.9/OpenCore-0.5.9-RELEASE.zip
+OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/0.6.1/OpenCore-0.6.1-RELEASE.zip
 OPEN_CORE_ZIP	=	$(DL_DIR)/$(notdir $(OPEN_CORE_URL))
 OPEN_CORE_DIR	=	$(basename $(OPEN_CORE_ZIP))
 OPEN_CORE_SRCS	=	\
