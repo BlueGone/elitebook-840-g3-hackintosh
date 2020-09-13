@@ -9,6 +9,7 @@ OPEN_CORE_DIR	=	$(basename $(OPEN_CORE_ZIP))
 OPEN_CORE_SRCS	=	\
 	$(OPEN_CORE_DIR)/EFI/OC/Bootstrap/Bootstrap.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenRuntime.efi \
+	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenCanopy.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Tools/OpenShell.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/OpenCore.efi
 OPEN_CORE_UTILITY_OCVALIDATE	=	$(OPEN_CORE_DIR)/Utilities/ocvalidate/ocvalidate
