@@ -11,6 +11,7 @@ OPEN_CORE_SRCS	=	\
 	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenRuntime.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/Tools/OpenShell.efi \
 	$(OPEN_CORE_DIR)/EFI/OC/OpenCore.efi
+OPEN_CORE_UTILITY_OCVALIDATE	=	$(OPEN_CORE_DIR)/Utilities/ocvalidate/ocvalidate
 OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
 HFS_PLUS_EFI_URL	=	https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi?raw=true
@@ -124,7 +125,7 @@ $(OPEN_CORE_ZIP):
 $(OPEN_CORE_DIR):	$(OPEN_CORE_ZIP)
 	mkdir -p $@
 	unzip -d $@ -o $<
-$(OPEN_CORE_SRCS):	$(OPEN_CORE_DIR)
+$(OPEN_CORE_SRCS) $(OPEN_CORE_UTILITY_OCVALIDATE):	$(OPEN_CORE_DIR)
 $(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI/OC,$$@)
 	mkdir -p $(dir $@)
 	cp $< $@
@@ -257,3 +258,7 @@ $(CONFIG_PLIST_DIST):	$(CONFIG_PLIST_SRC)
 $(ACPI_DIST):	$$(subst $(DIST_DIR),$(SRC_DIR),$$@)
 	mkdir -p $(dir $(ACPI_DIST))
 	cp -r $< $@
+
+.PHONY:	validate
+validate:	$(OPEN_CORE_UTILITY_OCVALIDATE) $(CONFIG_PLIST_SRC)
+	$(OPEN_CORE_UTILITY_OCVALIDATE) $(CONFIG_PLIST_SRC)
