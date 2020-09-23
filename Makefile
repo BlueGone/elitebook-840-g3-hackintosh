@@ -15,6 +15,12 @@ OPEN_CORE_SRCS	=	\
 OPEN_CORE_UTILITY_OCVALIDATE	=	$(OPEN_CORE_DIR)/Utilities/ocvalidate/ocvalidate
 OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
+OCBINARYDATA_URL	=	https://github.com/acidanthera/OcBinaryData/archive/master.zip
+OCBINARYDATA_ZIP	=	$(DL_DIR)/OcBinaryData.zip
+OCBINARYDATA_DIR	=	$(basename $(OCBINARYDATA_ZIP))
+OCBINARYDATA_SRC	=	$(OCBINARYDATA_DIR)/OcBinaryData-master/Resources
+OCBINARYDATA_DIST	=	$(DIST_DIR)/Resources
+
 HFS_PLUS_EFI_URL	=	https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi?raw=true
 HFS_PLUS_EFI_SRC	=	$(DL_DIR)/HfsPlus.efi
 HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/Drivers/HfsPlus.efi
@@ -111,6 +117,7 @@ CONFIG_PLIST_DIST	=	$(DIST_DIR)/config.plist
 
 DIST		=	\
 	$(OPEN_CORE_DIST) \
+	$(OCBINARYDATA_DIST) \
 	$(HFS_PLUS_EFI_DIST) \
 	$(KEXTS_DIST) \
 	$(ACPI_DIST) \
@@ -130,6 +137,17 @@ $(OPEN_CORE_SRCS) $(OPEN_CORE_UTILITY_OCVALIDATE):	$(OPEN_CORE_DIR)
 $(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI/OC,$$@)
 	mkdir -p $(dir $@)
 	cp $< $@
+
+$(OCBINARYDATA_ZIP):
+	mkdir -p $(dir $@)
+	curl -Lo $@ $(OCBINARYDATA_URL)
+$(OCBINARYDATA_DIR):	$(OCBINARYDATA_ZIP)
+	mkdir -p $(dir $@)
+	unzip -d $@ -o $<
+$(OCBINARYDATA_SRC):	$(OCBINARYDATA_DIR)
+$(OCBINARYDATA_DIST):	$(OCBINARYDATA_SRC)
+	mkdir -p $(DIST_KEXT_DIR)
+	cp -r $< $@
 
 $(HFS_PLUS_EFI_SRC):
 	mkdir -p $(dir $@)
