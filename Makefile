@@ -3,17 +3,17 @@ SRC_DIR		=	src
 DIST_DIR	=	dist
 BUILD_TYPE	=	RELEASE
 
-OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/0.6.1/OpenCore-0.6.1-$(BUILD_TYPE).zip
+OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/0.6.2/OpenCore-0.6.2-$(BUILD_TYPE).zip
 OPEN_CORE_ZIP	=	$(DL_DIR)/$(notdir $(OPEN_CORE_URL))
 OPEN_CORE_DIR	=	$(basename $(OPEN_CORE_ZIP))
 OPEN_CORE_SRCS	=	\
-	$(OPEN_CORE_DIR)/EFI/OC/Bootstrap/Bootstrap.efi \
-	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenRuntime.efi \
-	$(OPEN_CORE_DIR)/EFI/OC/Drivers/OpenCanopy.efi \
-	$(OPEN_CORE_DIR)/EFI/OC/Tools/OpenShell.efi \
-	$(OPEN_CORE_DIR)/EFI/OC/OpenCore.efi
+	$(OPEN_CORE_DIR)/X64/EFI/OC/Bootstrap/Bootstrap.efi \
+	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenRuntime.efi \
+	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenCanopy.efi \
+	$(OPEN_CORE_DIR)/X64/EFI/OC/Tools/OpenShell.efi \
+	$(OPEN_CORE_DIR)/X64/EFI/OC/OpenCore.efi
 OPEN_CORE_UTILITY_OCVALIDATE	=	$(OPEN_CORE_DIR)/Utilities/ocvalidate/ocvalidate
-OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
+OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/X64/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
 OCBINARYDATA_URL	=	https://github.com/acidanthera/OcBinaryData/archive/master.zip
 OCBINARYDATA_ZIP	=	$(DL_DIR)/OcBinaryData.zip
@@ -134,7 +134,7 @@ $(OPEN_CORE_DIR):	$(OPEN_CORE_ZIP)
 	mkdir -p $@
 	unzip -d $@ -o $<
 $(OPEN_CORE_SRCS) $(OPEN_CORE_UTILITY_OCVALIDATE):	$(OPEN_CORE_DIR)
-$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/EFI/OC,$$@)
+$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/X64/EFI/OC,$$@)
 	mkdir -p $(dir $@)
 	cp $< $@
 
