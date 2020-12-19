@@ -27,13 +27,13 @@ HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/Drivers/HfsPlus.efi
 
 DIST_KEXT_DIR		=	$(DIST_DIR)/Kexts
 
-KEXT_AIRPORTBRCMFIXUP_URL	=	https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.1/AirportBrcmFixup-2.1.1-$(BUILD_TYPE).zip
+KEXT_AIRPORTBRCMFIXUP_URL	=	https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.2/AirportBrcmFixup-2.1.2-$(BUILD_TYPE).zip
 KEXT_AIRPORTBRCMFIXUP_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_AIRPORTBRCMFIXUP_URL))
 KEXT_AIRPORTBRCMFIXUP_DIR	=	$(basename $(KEXT_AIRPORTBRCMFIXUP_ZIP))
 KEXT_AIRPORTBRCMFIXUP_SRC	=	$(KEXT_AIRPORTBRCMFIXUP_DIR)/AirportBrcmFixup.kext
 KEXT_AIRPORTBRCMFIXUP_DIST	=	$(DIST_KEXT_DIR)/AirportBrcmFixup.kext
 
-KEXT_APPLEALC_URL	=	https://github.com/acidanthera/AppleALC/releases/download/1.5.4/AppleALC-1.5.4-$(BUILD_TYPE).zip
+KEXT_APPLEALC_URL	=	https://github.com/acidanthera/AppleALC/releases/download/1.5.5/AppleALC-1.5.5-$(BUILD_TYPE).zip
 KEXT_APPLEALC_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_APPLEALC_URL))
 KEXT_APPLEALC_DIR	=	$(basename $(KEXT_APPLEALC_ZIP))
 KEXT_APPLEALC_SRC	=	$(KEXT_APPLEALC_DIR)/AppleALC.kext
@@ -60,7 +60,7 @@ KEXT_INTELMAUSI_DIR	=	$(basename $(KEXT_INTELMAUSI_ZIP))
 KEXT_INTELMAUSI_SRC	=	$(KEXT_INTELMAUSI_DIR)/IntelMausi.kext
 KEXT_INTELMAUSI_DIST	=	$(DIST_KEXT_DIR)/IntelMausi.kext
 
-KEXT_LILU_URL	=	https://github.com/acidanthera/Lilu/releases/download/1.4.9/Lilu-1.4.9-$(BUILD_TYPE).zip
+KEXT_LILU_URL	=	https://github.com/acidanthera/Lilu/releases/download/1.5.0/Lilu-1.5.0-$(BUILD_TYPE).zip
 KEXT_LILU_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_LILU_URL))
 KEXT_LILU_DIR	=	$(basename $(KEXT_LILU_ZIP))
 KEXT_LILU_SRC	=	$(KEXT_LILU_DIR)/Lilu.kext
@@ -72,19 +72,19 @@ KEXT_RTCMEMORYFIXUP_DIR		=	$(basename $(KEXT_RTCMEMORYFIXUP_ZIP))
 KEXT_RTCMEMORYFIXUP_SRC		=	$(KEXT_RTCMEMORYFIXUP_DIR)/RTCMemoryFixup.kext
 KEXT_RTCMEMORYFIXUP_DIST	=	$(DIST_KEXT_DIR)/RTCMemoryFixup.kext
 
-KEXT_VIRTUALSMC_URL	=	https://github.com/acidanthera/VirtualSMC/releases/download/1.1.8/VirtualSMC-1.1.8-$(BUILD_TYPE).zip
+KEXT_VIRTUALSMC_URL	=	https://github.com/acidanthera/VirtualSMC/releases/download/1.1.9/VirtualSMC-1.1.9-$(BUILD_TYPE).zip
 KEXT_VIRTUALSMC_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_VIRTUALSMC_URL))
 KEXT_VIRTUALSMC_DIR	=	$(basename $(KEXT_VIRTUALSMC_ZIP))
 KEXT_VIRTUALSMC_SRC	=	$(KEXT_VIRTUALSMC_DIR)/Kexts/VirtualSMC.kext
 KEXT_VIRTUALSMC_DIST	=	$(DIST_KEXT_DIR)/VirtualSMC.kext
 
-KEXT_VOODOOPS2CONTROLLER_URL	=	https://github.com/acidanthera/VoodooPS2/releases/download/2.1.8/VoodooPS2Controller-2.1.8-$(BUILD_TYPE).zip
+KEXT_VOODOOPS2CONTROLLER_URL	=	https://github.com/acidanthera/VoodooPS2/releases/download/2.1.9/VoodooPS2Controller-2.1.9-$(BUILD_TYPE).zip
 KEXT_VOODOOPS2CONTROLLER_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_VOODOOPS2CONTROLLER_URL))
 KEXT_VOODOOPS2CONTROLLER_DIR	=	$(basename $(KEXT_VOODOOPS2CONTROLLER_ZIP))
 KEXT_VOODOOPS2CONTROLLER_SRC	=	$(KEXT_VOODOOPS2CONTROLLER_DIR)/VoodooPS2Controller.kext
 KEXT_VOODOOPS2CONTROLLER_DIST	=	$(DIST_KEXT_DIR)/VoodooPS2Controller.kext
 
-KEXT_WHATEVERGREEN_URL	=	https://github.com/acidanthera/WhateverGreen/releases/download/1.4.4/WhateverGreen-1.4.4-$(BUILD_TYPE).zip
+KEXT_WHATEVERGREEN_URL	=	https://github.com/acidanthera/WhateverGreen/releases/download/1.4.5/WhateverGreen-1.4.5-$(BUILD_TYPE).zip
 KEXT_WHATEVERGREEN_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_WHATEVERGREEN_URL))
 KEXT_WHATEVERGREEN_DIR	=	$(basename $(KEXT_WHATEVERGREEN_ZIP))
 KEXT_WHATEVERGREEN_SRC	=	$(KEXT_WHATEVERGREEN_DIR)/WhateverGreen.kext
