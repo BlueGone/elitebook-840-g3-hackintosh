@@ -3,7 +3,7 @@ SRC_DIR		=	src
 DIST_DIR	=	dist
 BUILD_TYPE	=	RELEASE
 
-OPEN_CORE_VERSION		=	0.6.4
+OPEN_CORE_VERSION		=	0.6.7
 
 KEXT_AIRPORTBRCMFIXUP_VERSION	=	2.1.2
 KEXT_APPLEALC_VERSION		=	1.5.5
@@ -20,7 +20,6 @@ OPEN_CORE_URL	=	https://github.com/acidanthera/OpenCorePkg/releases/download/$(O
 OPEN_CORE_ZIP	=	$(DL_DIR)/$(notdir $(OPEN_CORE_URL))
 OPEN_CORE_DIR	=	$(basename $(OPEN_CORE_ZIP))
 OPEN_CORE_SRCS	=	\
-	$(OPEN_CORE_DIR)/X64/EFI/OC/Bootstrap/Bootstrap.efi \
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenRuntime.efi \
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenCanopy.efi \
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Tools/OpenShell.efi \
