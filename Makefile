@@ -313,3 +313,14 @@ $(ACPI_DIST):	$$(subst $(DIST_DIR)/OC,$(SRC_DIR),$$@)
 .PHONY:	validate
 validate:	$(OPEN_CORE_UTILITY_OCVALIDATE) $(CONFIG_PLIST_SRC)
 	$(OPEN_CORE_UTILITY_OCVALIDATE) $(CONFIG_PLIST_SRC)
+
+.PHONY:	clean-dl
+clean-dl:
+	$(RM) -r $(DL_DIR)
+
+.PHONY:	clean-dist
+clean-dist:
+	$(RM) -r $(DIST_DIR)
+
+.PHONY:	clean
+clean:	clean-dl clean-dist
