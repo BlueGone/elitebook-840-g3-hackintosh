@@ -1,6 +1,6 @@
 DL_DIR		=	_dl
 SRC_DIR		=	src
-DIST_DIR	=	dist
+DIST_DIR	=	EFI
 BUILD_TYPE	=	RELEASE
 
 OPEN_CORE_VERSION		=	0.6.7
@@ -23,21 +23,23 @@ OPEN_CORE_SRCS	=	\
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenRuntime.efi \
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Drivers/OpenCanopy.efi \
 	$(OPEN_CORE_DIR)/X64/EFI/OC/Tools/OpenShell.efi \
-	$(OPEN_CORE_DIR)/X64/EFI/OC/OpenCore.efi
+	$(OPEN_CORE_DIR)/X64/EFI/OC/OpenCore.efi \
+	$(OPEN_CORE_DIR)/X64/EFI/BOOT/BOOTx64.efi
+
 OPEN_CORE_UTILITY_OCVALIDATE	=	$(OPEN_CORE_DIR)/Utilities/ocvalidate/ocvalidate
-OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/X64/EFI/OC,$(DIST_DIR),$(OPEN_CORE_SRCS))
+OPEN_CORE_DIST	=	$(subst $(OPEN_CORE_DIR)/X64/EFI,$(DIST_DIR),$(OPEN_CORE_SRCS))
 
 OCBINARYDATA_URL	=	https://github.com/acidanthera/OcBinaryData/archive/master.zip
 OCBINARYDATA_ZIP	=	$(DL_DIR)/OcBinaryData.zip
 OCBINARYDATA_DIR	=	$(basename $(OCBINARYDATA_ZIP))
 OCBINARYDATA_SRC	=	$(OCBINARYDATA_DIR)/OcBinaryData-master/Resources
-OCBINARYDATA_DIST	=	$(DIST_DIR)/Resources
+OCBINARYDATA_DIST	=	$(DIST_DIR)/OC/Resources
 
 HFS_PLUS_EFI_URL	=	https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi?raw=true
 HFS_PLUS_EFI_SRC	=	$(DL_DIR)/HfsPlus.efi
-HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/Drivers/HfsPlus.efi
+HFS_PLUS_EFI_DIST	=	$(DIST_DIR)/OC/Drivers/HfsPlus.efi
 
-DIST_KEXT_DIR		=	$(DIST_DIR)/Kexts
+DIST_KEXT_DIR		=	$(DIST_DIR)/OC/Kexts
 
 KEXT_AIRPORTBRCMFIXUP_URL	=	https://github.com/acidanthera/AirportBrcmFixup/releases/download/$(KEXT_AIRPORTBRCMFIXUP_VERSION)/AirportBrcmFixup-$(KEXT_AIRPORTBRCMFIXUP_VERSION)-$(BUILD_TYPE).zip
 KEXT_AIRPORTBRCMFIXUP_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_AIRPORTBRCMFIXUP_URL))
@@ -103,7 +105,7 @@ KEXT_WHATEVERGREEN_SRC	=	$(KEXT_WHATEVERGREEN_DIR)/WhateverGreen.kext
 KEXT_WHATEVERGREEN_DIST	=	$(DIST_KEXT_DIR)/WhateverGreen.kext
 
 KEXT_CPUFRIENDDATAPROVIDER_SRC	=	$(SRC_DIR)/Kexts/CPUFriendDataProvider.kext
-KEXT_CPUFRIENDDATAPROVIDER_DIST	=	$(DIST_DIR)/Kexts/CPUFriendDataProvider.kext
+KEXT_CPUFRIENDDATAPROVIDER_DIST	=	$(DIST_DIR)/OC/Kexts/CPUFriendDataProvider.kext
 
 KEXT_CTLNAAHCIPORT_URL	=	https://github.com/dortania/OpenCore-Install-Guide/raw/master/extra-files/CtlnaAHCIPort.kext.zip
 KEXT_CTLNAAHCIPORT_ZIP	=	$(DL_DIR)/$(notdir $(KEXT_CTLNAAHCIPORT_URL))
@@ -129,10 +131,10 @@ ACPI_SRCS	=	\
 	$(SRC_DIR)/ACPI/SSDT-EC-USBX.aml \
 	$(SRC_DIR)/ACPI/SSDT-PLUG.aml \
 	$(SRC_DIR)/ACPI/SSDT-PNLF.aml
-ACPI_DIST	=	$(ACPI_SRCS:$(SRC_DIR)/%=$(DIST_DIR)/%)	
+ACPI_DIST	=	$(ACPI_SRCS:$(SRC_DIR)/%=$(DIST_DIR)/OC/%)
 
 CONFIG_PLIST_SRC	=	$(SRC_DIR)/config.plist
-CONFIG_PLIST_DIST	=	$(DIST_DIR)/config.plist
+CONFIG_PLIST_DIST	=	$(DIST_DIR)/OC/config.plist
 
 DIST		=	\
 	$(OPEN_CORE_DIST) \
@@ -153,7 +155,7 @@ $(OPEN_CORE_DIR):	$(OPEN_CORE_ZIP)
 	mkdir -p $@
 	unzip -d $@ -o $<
 $(OPEN_CORE_SRCS) $(OPEN_CORE_UTILITY_OCVALIDATE):	$(OPEN_CORE_DIR)
-$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/X64/EFI/OC,$$@)
+$(OPEN_CORE_DIST):	$$(subst $(DIST_DIR),$(OPEN_CORE_DIR)/X64/EFI,$$@)
 	mkdir -p $(dir $@)
 	cp $< $@
 
@@ -304,7 +306,7 @@ $(CONFIG_PLIST_DIST):	$(CONFIG_PLIST_SRC)
 	mkdir -p $(dir $@)
 	cp -r $< $@
 
-$(ACPI_DIST):	$$(subst $(DIST_DIR),$(SRC_DIR),$$@)
+$(ACPI_DIST):	$$(subst $(DIST_DIR)/OC,$(SRC_DIR),$$@)
 	mkdir -p $(dir $(ACPI_DIST))
 	cp -r $< $@
 
