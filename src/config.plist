@@ -392,24 +392,24 @@
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
-                        <dict>
-                                <key>Comment</key>
-                                <string></string>
-                                <key>MaxKernel</key>
-                                <string></string>
-                                <key>PlistPath</key>
-                                <string>Contents/Info.plist</string>
-                                <key>Enabled</key>
-                                <true/>
-                                <key>MinKernel</key>
-                                <string></string>
-                                <key>ExecutablePath</key>
-                                <string>Contents/MacOS/CtlnaAHCIPort</string>
-                                <key>Arch</key>
-                                <string>Any</string>
-                                <key>BundlePath</key>
-                                <string>CtlnaAHCIPort.kext</string>
-                        </dict>
+			<dict>
+				<key>Comment</key>
+				<string></string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+				<key>Enabled</key>
+				<true/>
+				<key>MinKernel</key>
+				<string></string>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/CtlnaAHCIPort</string>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>CtlnaAHCIPort.kext</string>
+			</dict>
 			<dict>
 				<key>Arch</key>
 				<string>x86_64</string>
@@ -798,7 +798,7 @@
 			<key>PickerMode</key>
 			<string>External</string>
 			<key>PollAppleHotKeys</key>
-			<false/>
+			<true/>
 			<key>ShowPicker</key>
 			<true/>
 			<key>TakeoffDelay</key>
@@ -1117,7 +1117,7 @@
 			<key>DeviceProperties</key>
 			<false/>
 			<key>FirmwareVolume</key>
-			<false/>
+			<true/>
 			<key>HashServices</key>
 			<false/>
 			<key>OSInfo</key>
