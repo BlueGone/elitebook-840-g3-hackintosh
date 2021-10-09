@@ -2,6 +2,7 @@ DL_DIR		=	_dl
 SRC_DIR		=	src
 DIST_DIR	=	EFI
 BUILD_TYPE	=	RELEASE
+SERIAL_NUMBER	=	W00000000001
 
 OPEN_CORE_VERSION		=	0.7.3
 
@@ -304,7 +305,7 @@ $(KEXT_CTLNAAHCIPORT_DIST):	$(KEXT_CTLNAAHCIPORT_SRC)
 
 $(CONFIG_PLIST_DIST):	$(CONFIG_PLIST_SRC)
 	mkdir -p $(dir $@)
-	cp -r $< $@
+	sed 's/W00000000001/'${SERIAL_NUMBER}'/g' $< > $@
 
 $(ACPI_DIST):	$$(subst $(DIST_DIR)/OC,$(SRC_DIR),$$@)
 	mkdir -p $(dir $(ACPI_DIST))
